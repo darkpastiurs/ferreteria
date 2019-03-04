@@ -38,10 +38,13 @@ public class ArticuloN {
             }
         }
     };
-    public Consumer<Articulo> actualizarArticulo=(a)->{
-        LOG.log(Level.INFO,"[ArticuloN][INIT]->Actualizar Articulo");
+    public Consumer<Articulo> guardarArticulo=(a)->{
+        LOG.log(Level.INFO,"[ArticuloN][INIT]->Guardar Articulo");
         try {
             em.getTransaction().begin();
+            if(a.getId()==null||a.getId()==0){
+                em.persist(a);
+            }else{
                 Articulo articulo=em.find(Articulo.class,a.getId());
                 articulo.setId(a.getId());
                 articulo.setCodigo(a.getCodigo());
@@ -51,18 +54,7 @@ public class ArticuloN {
                 articulo.setDatosCategoria(a.getDatosCategoria());
                 articulo.setDatosUnidad(a.getDatosUnidad());
                 em.merge(articulo);
-            em.getTransaction().commit();
-        }catch (Exception e){
-            em.getTransaction().rollback();
-        }finally {
-            em.close();
-        }
-    };
-    public Consumer<Articulo> guardarArticulo=(a)->{
-        LOG.log(Level.INFO,"[ArticuloN][INIT]->Guardar Articulo");
-        try {
-            em.getTransaction().begin();
-            em.persist(a);
+            }            
             em.getTransaction().commit();
         }catch (Exception e){
             em.getTransaction().rollback();

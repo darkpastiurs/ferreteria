@@ -5,7 +5,6 @@
  */
 package ferreteria.sv.edu.unab.Presentacion.paneles;
 
-import ferreteria.sv.edu.unab.Dominio.Cliente;
 import ferreteria.sv.edu.unab.Dominio.Empleado;
 import ferreteria.sv.edu.unab.Infraestructura.Empleadoi;
 import ferreteria.sv.edu.unab.Presentacion.paneles.Formularios.FrmEmpleados;

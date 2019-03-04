@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ferreteriaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ferreteria.sv.edu.unab.Dominio.Articulo</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Categoria</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Cliente</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Compra</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Departamento</class>
+    <class>ferreteria.sv.edu.unab.Dominio.DetalleCompra</class>
+    <class>ferreteria.sv.edu.unab.Dominio.DetalleVenta</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Empleado</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Inventario</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Marca</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Municipio</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Persona</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Proveedor</class>
+    <class>ferreteria.sv.edu.unab.Dominio.TipoUsuario</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Unidad</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Usuario</class>
+    <class>ferreteria.sv.edu.unab.Dominio.Venta</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ferreteria_lupycar"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="andaduper2096"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipse.weaving" value="true"/>
+    </properties>
+  </persistence-unit>
+</persistence>

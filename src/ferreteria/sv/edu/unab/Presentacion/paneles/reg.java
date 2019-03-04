@@ -19,8 +19,7 @@ public class reg extends javax.swing.JPanel {
     }
     public void ajustarPnl(JPanel p){
         p.setSize(1181,898);
-        p.setLocation(5,5);
-        
+        p.setLocation(5,5);        
         pnlRegPrin.removeAll();
         pnlRegPrin.add(p, BorderLayout.CENTER);
         pnlRegPrin.revalidate();

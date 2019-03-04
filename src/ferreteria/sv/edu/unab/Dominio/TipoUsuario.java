@@ -19,7 +19,7 @@ public class TipoUsuario implements Serializable {
     @Column(name = "id")
     private Long id;
     @NotNull
-    @Column(name = "tipoUsuario")
+    @Column(name = "tipo")
     private String tipoUsuarios;
 
     public TipoUsuario() {

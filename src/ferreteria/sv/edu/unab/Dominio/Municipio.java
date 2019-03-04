@@ -20,7 +20,7 @@ public class Municipio {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Departamento.class)
+    @ManyToOne(targetEntity = Departamento.class)
     @JoinColumn(name = "iddepartamento")
     private Departamento datosDepartamento;
 

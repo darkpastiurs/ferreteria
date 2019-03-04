@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(schema = "sis",name = "usuarios")
 @NamedQueries({
-        @NamedQuery(name = "Articulo.findAll",query = "SELECT a FROM Articulo a order by a.id")
+        @NamedQuery(name = "Usuario.findAll",query = "SELECT u FROM Usuario u order by u.nombre asc")
 })
 public class Usuario implements Serializable {
     @Id
@@ -30,12 +30,12 @@ public class Usuario implements Serializable {
     private String contrasena;
     
      //referencia a tipo_usuario
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = TipoUsuario.class)
+    @ManyToOne(targetEntity = TipoUsuario.class)
     @JoinColumn(name = "idtipo")
     private TipoUsuario datosTipoUsuario;
     
      //referencia a Empleado(necesitamos definir la relacion bien)
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Empleado.class)
+    @ManyToOne(targetEntity = Empleado.class)
     @JoinColumn(name = "idempleado")
     private Empleado datosEmpleado;
 

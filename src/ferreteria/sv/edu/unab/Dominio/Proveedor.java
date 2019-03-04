@@ -14,7 +14,7 @@ public class Proveedor implements Serializable {
     private static final long serialVersionUID=1L;
     @Id
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Persona.class,optional = false)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = Persona.class,optional = false)
     @MapsId
     @JoinColumn(name = "idpersona",referencedColumnName = "id",unique = true)
     private Persona datosPersonales;

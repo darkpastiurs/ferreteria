@@ -5,6 +5,17 @@
  */
 package ferreteria.sv.edu.unab.Presentacion.paneles;
 
+import ferreteria.sv.edu.unab.Dominio.Proveedor;
+import ferreteria.sv.edu.unab.Dominio.Usuario;
+import ferreteria.sv.edu.unab.Infraestructura.Usuarioi;
+import ferreteria.sv.edu.unab.Presentacion.paneles.Formularios.FrmUsuario;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+
 /**
  *
  * @author HP
@@ -14,9 +25,32 @@ public class RegUsuario extends javax.swing.JPanel {
     /**
      * Creates new form RegUsuario
      */
+    List<Usuario> listadoModel;
+    Usuarioi usi=new Usuarioi();
     public RegUsuario() {
         initComponents();
+        init();
     }
+    public final void init(){
+        mostrarUsuarios.accept(tblUsuarios);
+        tblUsuarios.setFillsViewportHeight(true);
+        if (listadoModel==null){
+            listadoModel=new ArrayList<>();
+        }
+    btnNuevo.addActionListener(e->{
+        FrmUsuario frm=new FrmUsuario(null);
+        frm.setLocationRelativeTo(null);
+        frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frm.setVisible(true);
+    });
+    }
+    Consumer<JTable> mostrarUsuarios=(t)->{
+        listadoModel=usi.actualizarDatos.apply(t);
+        usi.actualizarDatos.apply(t);
+    };
+    BiConsumer<JTable,List<Usuario>> mostrarCoincidencias=(t, l)->{
+            usi.mostrarCoincidencias.accept(t,l);
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,14 +64,15 @@ public class RegUsuario extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnEliminar = new ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro();
         btnEditar = new ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro();
         btnNuevo = new ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro();
+        btnNuevo1 = new ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro();
+        tblUsuariosddd = new javax.swing.JScrollPane();
+        tblUsuarios = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -46,21 +81,8 @@ public class RegUsuario extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
-        jLabel3.setText("Inicio/Administración de Registros/Empleados");
+        jLabel3.setText("Inicio/Administración de Registros/Usuarios");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 7, 390, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Contraseña", "Tipo de Usuario", "Nombre"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -69,17 +91,25 @@ public class RegUsuario extends javax.swing.JPanel {
 
         txtBuscar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferreteria/sv/edu/unab/Presentacion/img/elimi.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferreteria/sv/edu/unab/Presentacion/img/editar.png"))); // NOI18N
-        btnEditar.setText("Editar");
+        btnEditar.setText("Cambiar Contraseña");
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        btnNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferreteria/sv/edu/unab/Presentacion/img/nuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        btnNuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        btnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferreteria/sv/edu/unab/Presentacion/img/permisos.png"))); // NOI18N
+        btnNuevo1.setText("Permisos");
+        btnNuevo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -90,13 +120,15 @@ public class RegUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,20 +143,38 @@ public class RegUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        tblUsuariosddd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblUsuariosddd.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(tblUsuariosddd))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,9 +184,9 @@ public class RegUsuario extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(249, 249, 249)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tblUsuariosddd, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,13 +195,14 @@ public class RegUsuario extends javax.swing.JPanel {
     private ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro btnEditar;
     private ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro btnEliminar;
     private ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro btnNuevo;
+    private ferreteria.sv.edu.unab.Presentacion.rsbuttom.RSButtonMetro btnNuevo1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBuscar;
+    private javax.swing.JTable tblUsuarios;
+    private javax.swing.JScrollPane tblUsuariosddd;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

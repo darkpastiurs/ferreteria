@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Empleadoi {
     DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    List<Empleado> listado;
+    List<Empleado> listadoModel;
     EmpleadoN em=new EmpleadoN();
-
+    
+    public Supplier<List<Empleado>> listadoEmpleados= em.listadoEmpleados::get;
+    
     public Consumer<Empleado> GuardarEmpleado= (e) -> {
         new EmpleadoN().guardarEmpleado.accept(e);
     };
@@ -65,8 +68,8 @@ public class Empleadoi {
     };
     public Function<JTable,List<Empleado>> actualizarDatos= tabla->{
         EmpleadoN en=new EmpleadoN();
-        listado=en.listadoEmpleados.get();
-        cargarTabla.accept(tabla, listado);
+        listadoModel=en.listadoEmpleados.get();
+        cargarTabla.accept(tabla, listadoModel);
         TableColumn columna = tabla.getColumnModel().getColumn(0);
         columna.setMaxWidth(0);
         columna.setMinWidth(0);
@@ -75,7 +78,7 @@ public class Empleadoi {
         ajustarColumnas(2,60,tabla);
         ajustarColumnas(3,60,tabla);
         tabla.doLayout();
-        return listado;
+        return listadoModel;
     };
     private void ajustarColumnas(Integer c, Integer t, JTable tabla){
         TableColumn columna = tabla.getColumnModel().getColumn(c);

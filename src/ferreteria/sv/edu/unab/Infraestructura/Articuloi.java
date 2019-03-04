@@ -30,9 +30,6 @@ public class Articuloi {
     public Consumer<Articulo> guardarArticulo= a -> {
         new ArticuloN().guardarArticulo.accept(a);
     };
-    public Consumer<Articulo> actualizarArticulo= a -> {
-        new ArticuloN().actualizarArticulo.accept(a);
-    };
     public Consumer<Articulo> eliminarArticulo= a -> {
         new ArticuloN().eliminarArticulo.accept(a);
     };

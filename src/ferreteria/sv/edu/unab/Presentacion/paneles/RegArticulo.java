@@ -7,8 +7,7 @@ package ferreteria.sv.edu.unab.Presentacion.paneles;
 
 import ferreteria.sv.edu.unab.Dominio.Articulo;
 import ferreteria.sv.edu.unab.Infraestructura.Articuloi;
-
-import ferreteria.sv.edu.unab.Presentacion.paneles.Formularios.FrmArticulo;
+import ferreteria.sv.edu.unab.Presentacion.JDialog.DArticulos;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -48,21 +46,19 @@ public final class RegArticulo extends javax.swing.JPanel {
             listadoModel=new ArrayList<>();
         }
         btnNuevo.addActionListener(e->{
-            FrmArticulo frm=new FrmArticulo(null);
-            frm.setLocationRelativeTo(null);
-            frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frm.setVisible(true);
-            mostrarArticulos.accept(tblArticulo);
+           DArticulos dialog = new DArticulos(null,new javax.swing.JFrame(), true);
+           dialog.setLocationRelativeTo(null);
+           dialog.setVisible(true);
+           mostrarArticulos.accept(tblArticulo);
         });
         
          btnEditar.addActionListener(e->{
              try{
                 listadoModel.stream().forEach(l->{
                 if(l.getId().equals(ID)){
-                    FrmArticulo frm=new FrmArticulo(l);                   
-                    frm.setLocationRelativeTo(null);
-                    frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    frm.setVisible(true);   
+                    DArticulos dialog = new DArticulos(l,new javax.swing.JFrame(), true);
+                    dialog.setLocationRelativeTo(null);
+                    dialog.setVisible(true);
                     mostrarArticulos.accept(tblArticulo);
                 }
             });} catch(Exception e2){}

@@ -48,12 +48,12 @@ public class DetalleVenta implements Serializable {
     private Double total;
     
     //referencia a tabla ventas
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Venta.class)
+    @ManyToOne(targetEntity = Venta.class)
     @JoinColumn(name = "idventa")
     private Venta datosVenta;
     
     //referencia a tabla Inventario
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Inventario.class)
+    @ManyToOne(targetEntity = Inventario.class)
     @JoinColumn(name = "idcompra")
     private Inventario datosInventario;
 

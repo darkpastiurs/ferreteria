@@ -5,10 +5,8 @@
  */
 package ferreteria.sv.edu.unab.Presentacion.paneles;
 
-import ferreteria.sv.edu.unab.Dominio.Cliente;
 import ferreteria.sv.edu.unab.Dominio.Proveedor;
 import ferreteria.sv.edu.unab.Infraestructura.Proveedori;
-import ferreteria.sv.edu.unab.Presentacion.paneles.Formularios.FrmCliente;
 import ferreteria.sv.edu.unab.Presentacion.paneles.Formularios.FrmProveedor;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;

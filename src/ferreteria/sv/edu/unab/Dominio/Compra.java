@@ -50,12 +50,12 @@ public class Compra implements Serializable {
     private Double total;
     
     //referencia a proveedor
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Proveedor.class)
     @JoinColumn(name = "idproveedor")
     private Proveedor datosProveedor;
 
     //referencia a Empleado
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Empleado.class)
     @JoinColumn(name = "idempleado")
     private Empleado datosEmpleado;
 

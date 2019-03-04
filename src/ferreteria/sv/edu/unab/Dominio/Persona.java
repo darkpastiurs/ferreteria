@@ -69,10 +69,10 @@ public class Persona implements Serializable {
     @Pattern(regexp = "^[A-Za-z0-9_.-]+@(.+)$")
     private String email;
 
-    @OneToOne(mappedBy = "datosPersonales",fetch = FetchType.LAZY,targetEntity = Empleado.class)
+    @OneToOne(mappedBy = "datosPersonales",targetEntity = Empleado.class)
     private Empleado empleado;
 
-    @OneToOne(mappedBy = "datosPersonales",fetch = FetchType.LAZY,targetEntity = Cliente.class)
+    @OneToOne(mappedBy = "datosPersonales",targetEntity = Cliente.class)
     private Cliente cliente;
 
     public Persona() {

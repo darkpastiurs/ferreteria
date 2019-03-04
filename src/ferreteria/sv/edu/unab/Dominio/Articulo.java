@@ -27,17 +27,17 @@ public class Articulo implements Serializable {
     private String descripcion;
 
     //referencia a marca
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Marca.class)
+    @ManyToOne(targetEntity = Marca.class)
     @JoinColumn(name = "idmarca")
     private Marca datosMarca;
 
     //referencia a categoria
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Categoria.class)
+    @ManyToOne(targetEntity = Categoria.class)
     @JoinColumn(name = "idcategoria")
     private Categoria datosCategoria;
 
     //referencia a unidades
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Unidad.class)
+    @ManyToOne(targetEntity = Unidad.class)
     @JoinColumn(name = "idunidad")
     private Unidad datosUnidad;
 

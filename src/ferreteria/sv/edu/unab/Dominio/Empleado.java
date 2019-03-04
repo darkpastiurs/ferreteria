@@ -23,7 +23,7 @@ public class Empleado implements Serializable {
     @NotNull
     @Column(name = "afp")
     private String afp;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Persona.class,optional = false)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = Persona.class,optional = false)
     @MapsId
     @JoinColumn(name = "idpersona",referencedColumnName = "id",unique = true)
     private Persona datosPersonales;

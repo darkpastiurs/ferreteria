@@ -13,9 +13,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Unidadi {
-    List<Unidad> listadoModel;
-    
-    UnidadN un=new UnidadN();
+    List<Unidad> listadoModel;   
+    UnidadN un=new UnidadN();   
     
     public Supplier<List<Unidad>> listadoUnidades=un.listadoUnidades::get;
 

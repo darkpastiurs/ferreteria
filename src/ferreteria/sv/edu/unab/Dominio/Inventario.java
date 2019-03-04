@@ -42,7 +42,7 @@ public class Inventario implements Serializable {
     private Double precio;
     
     //relacion con la tabla de articulos de uno a uno
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Articulo.class,optional = false)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = Articulo.class,optional = false)
     @MapsId
     @JoinColumn(name = "idarticulo",referencedColumnName = "id",unique = true)
     private Articulo datosArticulo;

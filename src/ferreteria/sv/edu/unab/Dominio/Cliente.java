@@ -14,12 +14,12 @@ public class Cliente implements Serializable {
 
     @Id
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,targetEntity = Persona.class,optional = false)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = Persona.class,optional = false)
     @MapsId
     @JoinColumn(name = "idpersona",referencedColumnName = "id",unique = true)
     private Persona datosPersonales;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Municipio.class)
+    @ManyToOne(targetEntity = Municipio.class)
     @JoinColumn(name = "idmunicipio")
     private Municipio datosMunicipio;
 

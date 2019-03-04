@@ -28,6 +28,7 @@ public class ArticuloN {
     public Supplier<List<Articulo>> listadoArticulos=()->{
         LOG.log(Level.INFO,"[ArticuloN][INIT]->Listado de Articulos");
         {
+            em.getEntityManagerFactory().getCache().evictAll();
             Query query=em.createNamedQuery("Articulo.findAll");
             List<Articulo> listado=query.getResultList();
 
